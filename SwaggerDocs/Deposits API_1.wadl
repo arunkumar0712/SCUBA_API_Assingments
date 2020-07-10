@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://wadl.dev.java.net/2009/02">
+  <doc xml:lang="en" title="Deposits API"># Overview
+The **Deposits API** allows you to perform account management operations such as account creation, account status updates and enquires on account information, account holders and transactions for various accounts held by the party. 
+
+The account types currently supported by the **Deposits API** are **Savings Account**, **Current Account**, **Fixed Deposits Account**, **Multi-Currency Account** and **Multiplier Account**. 
+
+The **Deposits API** also showcases all available HTTP request operations and their associated endpoints.
+
+# Version History
+Version | Release date | Change Log
+--------|--------------|----------------------
+1.0      | October, 2017   | Base version of API
+
+# Authentication
+&lt;!-- ReDoc-Inject: &lt;security-definitions> -->
+
+# Pagination
+Pagination is available on the Deposit summary API.
+
+# Frequently Asked Questions
+Q1: Can all the CASA accounts held by a party be viewed in one API call? 
+
+Ans: Yes, this information can be obtained using the Deposit summary API. 
+
+Q2: Can I get the account details of a Multi-Currency account? 
+
+Ans: Yes, the account details API provides information on the various currencies associated with MCA accounts.
+
+# Known Issues
+This API has no pending issues at the moment. Want to report a new issue? please help us [here](mailto:developers@dbs.com)
+
+# Throttling (Rate Limits)
+We throttle our APIs by default to ensure maximum performance for all developers.</doc>
+  <resources base="https://www.dbs.com/sandbox/api/sg/v1">
+    <resource path="accounts/accountCreation" id="/accounts/accountCreation">
+      <doc xml:lang="en" title="/accounts/accountCreation"/>
+      <method name="POST" id="createAccountUsingPOST">
+        <doc xml:lang="en" title="createAccountUsingPOST">Creates an account. Current scope is for retail account only
+Create Account</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access token</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="false" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <representation mediaType="application/json"/>
+        </request>
+        <response status="200 201">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="accounts/earmarkFunds" id="/accounts/earmarkFunds">
+      <doc xml:lang="en" title="/accounts/earmarkFunds"/>
+      <method name="POST" id="earmarkAccountUsingPOST">
+        <doc xml:lang="en" title="earmarkAccountUsingPOST">Earmark an account on a specified amount of funds
+Earmark account on specific amount</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access token generated through the Authorisation process</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="false" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <representation mediaType="application/json"/>
+        </request>
+        <response status="200 201">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="400">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="accounts/releaseEarmark" id="/accounts/releaseEarmark">
+      <doc xml:lang="en" title="/accounts/releaseEarmark"/>
+      <method name="POST" id="releaseEarmarkUsingPOST">
+        <doc xml:lang="en" title="releaseEarmarkUsingPOST">Release earmark on an account
+Release earmark on an account</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access token generated through the Authorisation process</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="false" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <representation mediaType="application/json"/>
+        </request>
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="400">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="accounts/search" id="/accounts/search">
+      <doc xml:lang="en" title="/accounts/search"/>
+      <method name="GET" id="GET">
+        <doc xml:lang="en" title="GET">Search a given account number and if it is valid, return a tokenized account identifier
+Search a given account number</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access token</doc>
+          </param>
+          <param name="accountNumber" type="xs:string" required="true" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accountNumber Parameter">Account Number to be searched</doc>
+          </param>
+          <param name="productType" type="xs:string" required="true" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="productType Parameter">Product Type of the Account</doc>
+          </param>
+        </request>
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="504">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="accounts/{accountId}" id="/accounts/{accountId}">
+      <doc xml:lang="en" title="/accounts/{accountId}"/>
+      <method name="GET" id="GET">
+        <doc xml:lang="en" title="GET">Return account details for a given account
+Retrieve Account Details</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access token</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="false" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <param name="accountId" type="xs:string" required="true" default="" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accountId Parameter">Tokenised Account Identifier</doc>
+          </param>
+        </request>
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="accounts/{accountId}/earmarks" id="/accounts/{accountId}/earmarks">
+      <doc xml:lang="en" title="/accounts/{accountId}/earmarks"/>
+      <method name="GET" id="earmarkDetailsUsingGET">
+        <doc xml:lang="en" title="earmarkDetailsUsingGET">Return earmark details for a given account
+Retrieve Earmark Details</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access token generated through the Authorisation process</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="false" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <param name="accountId" type="xs:string" required="true" default="" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accountId Parameter">Tokenised Account Identifier</doc>
+          </param>
+        </request>
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="400">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="accounts/{accountId}/holders" id="/accounts/{accountId}/holders">
+      <doc xml:lang="en" title="/accounts/{accountId}/holders"/>
+      <method name="GET" id="GET">
+        <doc xml:lang="en" title="GET">Return list of holders for a given account
+Retrieve Account Holders</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access token</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="false" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <param name="accountId" type="xs:string" required="true" default="" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accountId Parameter">Tokenised Account Identifier</doc>
+          </param>
+        </request>
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="accounts/{accountId}/placements" id="/accounts/{accountId}/placements">
+      <doc xml:lang="en" title="/accounts/{accountId}/placements"/>
+      <method name="GET" id="GET">
+        <doc xml:lang="en" title="GET">Return list of placements for a given account.  It includes both outstanding and matured placements.
+Retrieve List of Fixed Deposit placements</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access Token</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="false" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <param name="accountId" type="xs:string" required="true" default="" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accountId Parameter">Tokenised Account Identifier</doc>
+          </param>
+        </request>
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="504">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="accounts/{accountId}/placements/placementCreation" id="/accounts/{accountId}/placements/placementCreation">
+      <doc xml:lang="en" title="/accounts/{accountId}/placements/placementCreation"/>
+      <param name="accountId" type="xs:string" required="false" default="" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+      <method name="POST" id="createFDPlacementUsingPOST">
+        <doc xml:lang="en" title="createFDPlacementUsingPOST">Create Fixed Deposit (FD) placement. Current scope is for retail customers and S$FD placement only.  Placement, Settlement and Withdrawal are in SGD only. 
+Create Fixed Deposit Placement</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access Token</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="false" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <representation mediaType="application/json"/>
+        </request>
+        <response status="200 201">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="200">
+          <representation mediaType="text/html;charset=UTF-8"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="accounts/{accountId}/placements/{depositId}" id="/accounts/{accountId}/placements/{depositId}">
+      <doc xml:lang="en" title="/accounts/{accountId}/placements/{depositId}"/>
+      <method name="GET" id="GET">
+        <doc xml:lang="en" title="GET">Return Fixed Deposit placement details for a given account and deposit number
+Retrieve Fixed Deposit placement details</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access Token</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="false" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <param name="accountId" type="xs:string" required="true" default="" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accountId Parameter">Tokenised Account Identifier</doc>
+          </param>
+          <param name="depositId" type="xs:string" required="true" default="" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="depositId Parameter">Tokenised Deposit Identifier</doc>
+          </param>
+        </request>
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="504">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="accounts/{accountId}/statusUpdate" id="/accounts/{accountId}/statusUpdate">
+      <doc xml:lang="en" title="/accounts/{accountId}/statusUpdate"/>
+      <method name="POST" id="tagAccountStatus">
+        <doc xml:lang="en" title="tagAccountStatus">Current scope supports tagging account as frozen only
+Update status of an account</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access token</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="false" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <param name="accountId" type="xs:string" required="true" default="" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accountId Parameter">Tokenised Account Identifier</doc>
+          </param>
+          <representation mediaType="application/json"/>
+        </request>
+        <response status="200 201">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="405">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="accounts/{accountId}/transactions" id="/accounts/{accountId}/transactions">
+      <doc xml:lang="en" title="/accounts/{accountId}/transactions"/>
+      <method name="GET" id="GET">
+        <doc xml:lang="en" title="GET">Return transaction history for a given account and date range
+Retrieve Transaction History</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access token</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="false" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <param name="accountId" type="xs:string" required="true" default="" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accountId Parameter">Tokenised Account Identifier</doc>
+          </param>
+        </request>
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="504">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="parties/{partyId}/deposits" id="/parties/{partyId}/deposits">
+      <doc xml:lang="en" title="/parties/{partyId}/deposits"/>
+      <method name="GET" id="GET">
+        <doc xml:lang="en" title="GET">Returns a summary of all the deposit products such as Savings, Current and MCA accounts for a given Party identifier. This does not include the Fixed deposit products.
+retrieve summary of Deposit Accounts</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access token</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="false" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="false" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <param name="partyId" type="xs:string" required="true" default="" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="partyId Parameter">Tokenised Party Identifier</doc>
+          </param>
+          <param name="cursor" type="xs:string" required="false" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="cursor Parameter">Cursor for pagination. Example: 1</doc>
+          </param>
+          <param name="amount" type="xs:string" required="false" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="amount Parameter">Denotes the minimum balance amount required to filter the accounts in response</doc>
+          </param>
+          <param name="currency" type="xs:string" required="false" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="currency Parameter">Denotes the currency of accounts to be filtered in response. ISO 4217 3-character currency code</doc>
+          </param>
+        </request>
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="400">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+  </resources>
+</application>

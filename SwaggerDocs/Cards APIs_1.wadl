@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://wadl.dev.java.net/2009/02">
+  <doc xml:lang="en" title="Cards APIs"># Overview
+ Cards APIs provide functionalities to retrieve and manage cards of a customer. For example, submit card application,  retrieve card details, statements and application status. 
+
+# Version History
+Version | Release date | Link to documentation
+--------|--------------|----------------------
+1.0      | March, 2018   | Base version of API 
+1.0      | Aug, 2018   | Add sort parameter in Retrieve Card Summary 
+
+# Authentication
+ Card APIs requires a valid **accessToken** to execute any operations. You can obtain one through the Authorization Steps. For more detailed instructions on requesting an *accessToken*, see **Getting Started** section for more details.
+
+# Pagination
+Pagination is available on some API.
+
+# Frequently Asked Question
+Q1: How to activate a card for overseas usage?
+
+Ans: Activate overseas usage by using **/cards/{cardId}/overseasCardActivation** with path parameter cardId 
+
+Q2: What is the accessToken to be used in the API headers?
+
+Ans: The accessToken should be the Partner's token and not the Customer's accessToken.
+
+# Known Issues
+This API has no pending issues at the moment. Want to report a new issue? please help us **here**
+
+# Throttling (Rate Limits)
+We throttle our APIs by default to ensure maximum performance for all developers.
+
+Below is more details to control API rate limits</doc>
+  <resources base="https://www.dbs.com/sandbox/api/sg/v1">
+    <resource path="cards/application/submitApplication" id="/cards/application/submitApplication">
+      <doc xml:lang="en" title="/cards/application/submitApplication"/>
+      <method name="POST" id="POST">
+        <doc xml:lang="en" title="POST">Submits Application for Principal/Supplementary Card
+Submit Card Application</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access Token</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <representation mediaType="application/json"/>
+        </request>
+        <response status="200 201">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="400">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="503">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="0">
+          <representation mediaType=""/>
+        </response>
+      </method>
+    </resource>
+    <resource path="cards/application/{applicationId}" id="/cards/application/{applicationId}">
+      <doc xml:lang="en" title="/cards/application/{applicationId}"/>
+      <param name="applicationId" default="2020217182300321" type="xs:string" required="false" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+      <method name="GET" id="GET">
+        <doc xml:lang="en" title="GET">Retrieves details of card application given an application identifier
+Retrieve Card Application Detail</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access Token</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <param name="applicationId" type="xs:string" required="true" default="" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="applicationId Parameter">Application Identifier</doc>
+          </param>
+        </request>
+        <response status="200">
+          <representation mediaType="application/json"/>
+          <representation mediaType="text/html;charset=UTF-8"/>
+        </response>
+        <response status="400">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="503">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="cards/block" id="/cards/block">
+      <doc xml:lang="en" title="/cards/block"/>
+      <method name="POST" id="blockCard">
+        <doc xml:lang="en" title="blockCard">Block a Credit/Debit/Bank card. More than one cards can be blocked in a single request.
+Block card(s)</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access token</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <representation mediaType="application/json"/>
+        </request>
+        <response status="200 201">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="400">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="503">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="cards/replacement" id="/cards/replacement">
+      <doc xml:lang="en" title="/cards/replacement"/>
+      <method name="POST" id="replaceCard">
+        <doc xml:lang="en" title="replaceCard">Replace or transfer a Credit/Debit/Bank card.
+Replace a card</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access token</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <representation mediaType="application/json"/>
+        </request>
+        <response status="200 201">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="400">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="503">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="cards/unblock" id="/cards/unblock">
+      <doc xml:lang="en" title="/cards/unblock"/>
+      <method name="POST" id="unblockCard">
+        <doc xml:lang="en" title="unblockCard">Unblock a Credit/Debit/Bank card. More than one cards can be unblocked in a single request
+Unblock card(s)</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access token</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <representation mediaType="application/json"/>
+        </request>
+        <response status="200 201">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="400">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="503">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="cards/20e892e785644b9a8ae0ce3f32311" id="/cards/{cardId}">
+      <doc xml:lang="en" title="/cards/{cardId}"/>
+      <method name="GET" id="retrieveCardDetails">
+        <doc xml:lang="en" title="retrieveCardDetails">Retrieve card details given a tokenized card identifier. Only Credit/Debit/Bank Cards are returned.
+Retrieve Card Details</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access Token</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="false" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <param name="cardId" type="xs:string" required="true" default="" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="cardId Parameter">Tokenised Card Identifier</doc>
+          </param>
+        </request>
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="503">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="0">
+          <representation mediaType=""/>
+        </response>
+      </method>
+    </resource>
+    <resource path="cards/{cardId}/availableStatementDates" id="/cards/{cardId}/availableStatementDates">
+      <doc xml:lang="en" title="/cards/{cardId}/availableStatementDates"/>
+      <method name="GET" id="retrieveCardStatementDates">
+        <doc xml:lang="en" title="retrieveCardStatementDates">Return list of statement dates for retrieval of past statements.
+Retrieve Card Statement Dates</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access token</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <param name="cardId" type="xs:string" required="true" default="" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="cardId Parameter">Tokenised Card Identifier</doc>
+          </param>
+        </request>
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="400">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="503">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="cards/{cardId}/cardActivation" id="/cards/{cardId}/cardActivation">
+      <doc xml:lang="en" title="/cards/{cardId}/cardActivation"/>
+      <method name="POST" id="cardActivationAdd">
+        <doc xml:lang="en" title="cardActivationAdd">Activate a new Credit/Debit/Bank card.
+Activate a card</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access token</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <param name="cardId" type="xs:string" required="true" default="" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="cardId Parameter">Tokenised Card Identifier</doc>
+          </param>
+          <representation mediaType="application/json"/>
+        </request>
+        <response status="200 201">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="503">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="cards/{cardId}/overseasCardActivation" id="/cards/{cardId}/overseasCardActivation">
+      <doc xml:lang="en" title="/cards/{cardId}/overseasCardActivation"/>
+      <method name="POST" id="overseasCardActivation">
+        <doc xml:lang="en" title="overseasCardActivation">Activate Credit/Debit/Bank card for overseas usage
+Activate a card for overseas usage.</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access token</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <param name="cardId" type="xs:string" required="true" default="" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="cardId Parameter">Tokenised Card Identifier.</doc>
+          </param>
+          <param name="permanentActivation" type="xs:string" required="false" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="permanentActivation Parameter">Indicates if overseas usage is to be activated permanently or temporarily. 'TRUE' -Permanent Activation, 'FALSE'- Non-Permanent Activation.</doc>
+          </param>
+          <param name="startDate" type="xs:string" required="true" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="startDate Parameter">Activation start date. Format is YYYYMMDD.</doc>
+          </param>
+          <param name="endDate" type="xs:string" required="false" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="endDate Parameter">Activation end date. Format is YYYYMMDD. This date is mandatory only for Non-Permanent Activation.</doc>
+          </param>
+        </request>
+        <response status="201">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="503">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="cards/{cardId}/overseasCardDeactivation" id="/cards/{cardId}/overseasCardDeactivation">
+      <doc xml:lang="en" title="/cards/{cardId}/overseasCardDeactivation"/>
+      <method name="POST" id="overseasCardDeactivation">
+        <doc xml:lang="en" title="overseasCardDeactivation">Deactivate Credit/Debit/Bank card for overseas usage.
+Deactivate a card for overseas usage..</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access token</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <param name="cardId" type="xs:string" required="true" default="" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="cardId Parameter">Tokenised Card Identifier</doc>
+          </param>
+        </request>
+        <response status="201">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="503">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="cards/{cardId}/statementSummary" id="/cards/{cardId}/statementSummary">
+      <doc xml:lang="en" title="/cards/{cardId}/statementSummary"/>
+      <method name="GET" id="retrieveCardStatementSummary">
+        <doc xml:lang="en" title="retrieveCardStatementSummary">Return card statement summary for a given card identifier and a statement date.
+Retrieve Card Statement Summary</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access token</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <param name="cardId" type="xs:string" required="true" default="" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="cardId Parameter">Tokenised Card Identifier</doc>
+          </param>
+          <param name="statementDate" type="xs:string" required="true" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="statementDate Parameter">Statement Date. Format is YYYY-MM-DD</doc>
+          </param>
+        </request>
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="400">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="503">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="cards/{cardId}/unbilledTransactions" id="/cards/{cardId}/unbilledTransactions">
+      <doc xml:lang="en" title="/cards/{cardId}/unbilledTransactions"/>
+      <method name="GET" id="retrieveUnbilledTransactions">
+        <doc xml:lang="en" title="retrieveUnbilledTransactions">Return unbilled transactions for given a card identifier.
+Retrieve unbilled transactions.</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access token</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <param name="cardId" type="xs:string" required="true" default="" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="cardId Parameter">Tokenised Card Identifier</doc>
+          </param>
+          <param name="isPrimaryCard" type="xs:string" required="true" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="isPrimaryCard Parameter">Primary card indicator</doc>
+          </param>
+          <param name="cursor" type="xs:string" required="false" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="cursor Parameter">Cursor for retrieving pending records</doc>
+          </param>
+        </request>
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="400">
+          <representation mediaType="application/json"/>
+          <representation mediaType=""/>
+          <representation mediaType=""/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="503">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="debitCards/createApplication" id="/debitCards/createApplication">
+      <doc xml:lang="en" title="/debitCards/createApplication"/>
+      <method name="POST" id="applyDebitCard">
+        <doc xml:lang="en" title="applyDebitCard">Register for new debit card application
+Create debit card application</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access Token</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="false" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <representation mediaType="application/json"/>
+        </request>
+        <response status="201">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="400">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="parties/{partyId}/cardApplication" id="/parties/{partyId}/cardApplication">
+      <doc xml:lang="en" title="/parties/{partyId}/cardApplication"/>
+      <method name="GET" id="GET">
+        <doc xml:lang="en" title="GET">Retrieves list of card applications belonging to a party
+Retrieve List of Card Applications</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access Token</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <param name="partyId" type="xs:string" required="true" default="" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="partyId Parameter">Tokenised party identifier</doc>
+          </param>
+        </request>
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="400">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="503">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="parties/ZGVtbw==/cards" id="/parties/{partyId}/cards">
+      <doc xml:lang="en" title="/parties/{partyId}/cards"/>
+      <method name="GET" id="GET">
+        <doc xml:lang="en" title="GET">Return list of active Credit/Debit/Bank cards for a  given party identifier.
+Retrieve Card Summary</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access Token</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="false" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <param name="sort" type="xs:string" required="false" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="sort Parameter">Specify the key for sorting in either ascending(asc) or descending(desc) order. Default is no sorting. Eg. sort=lastPurchaseDate:asc. Only 'lastPurchaseDate' is supported currently.</doc>
+          </param>
+          <param name="cursor" type="xs:string" required="false" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="cursor Parameter">Cursor for pagination. Example: 1</doc>
+          </param>
+        </request>
+        <response status="200">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="503">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+    <resource path="parties/{partyId}/eligibleProducts/" id="/parties/{partyId}/eligibleProducts/">
+      <doc xml:lang="en" title="/parties/{partyId}/eligibleProducts/"/>
+      <method name="GET" id="retrieveEligibleProducts">
+        <doc xml:lang="en" title="retrieveEligibleProducts">Retrieve the list of eligible card products for on-boarded customer. 
+Retrieve eligible card products</doc>
+        <request>
+          <param name="clientId" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="clientId Parameter">Client Identifier</doc>
+          </param>
+          <param name="accessToken" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accessToken Parameter">Access token</doc>
+          </param>
+          <param name="accept-version" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="accept-version Parameter">Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</doc>
+          </param>
+          <param name="uuid" type="xs:string" required="true" default="" style="header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="uuid Parameter">Message UID</doc>
+          </param>
+          <param name="partyId" type="xs:string" required="true" default="" style="template" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="partyId Parameter">Tokenised Party Identifier</doc>
+          </param>
+          <param name="Gender" type="xs:string" required="false" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="Gender Parameter">Gender</doc>
+          </param>
+          <param name="applicationType" type="xs:string" required="true" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="applicationType Parameter">Application Type&lt;br>NEWCC=New credit card,&lt;br> ADDNL=Additional credit card,&lt;br> NEWEDC=New embossed debit card</doc>
+          </param>
+          <param name="partySegment" type="xs:string" required="false" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="partySegment Parameter">Indicates party segment, mandatory if isStaff flag is false.&lt;br>01=Treasures-Private Client,&lt;br> 02=Treasures,&lt;br> 03=Private Banking, &lt;br>04=Personal Banking</doc>
+          </param>
+          <param name="isStaff" type="xs:string" required="true" default="" style="query" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <doc xml:lang="en" title="isStaff Parameter">Staff Identifier</doc>
+          </param>
+        </request>
+        <response status="200">
+          <representation mediaType="application/json"/>
+          <representation mediaType="text/html;charset=UTF-8"/>
+        </response>
+        <response status="400">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="403">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="404">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="500">
+          <representation mediaType="application/json"/>
+        </response>
+        <response status="503">
+          <representation mediaType="application/json"/>
+        </response>
+      </method>
+    </resource>
+  </resources>
+</application>

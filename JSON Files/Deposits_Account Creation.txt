@@ -1,0 +1,19 @@
+Current account
+Request:
+{
+   "accounts":{
+      "productType":"CA001",
+      "holders":{
+         "holderList":{
+            "id":"22880313650710201780065"
+         }
+      },
+      "baseCurrency":"SGD",
+      "openingDate":"2017-02-22"
+   }
+}
+Response:
+{"accounts": {
+   "id": "22887290350717201779073",
+   "accountNumber": "00546513000148"
+}}

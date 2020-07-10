@@ -1,0 +1,43 @@
+Request
+{
+   "placement":{
+      "commonDetl":{
+         "trailDetl":{
+            "operatorId":"01",
+            "operatorDateTime":"2017-05-02T18:14:11.302+08:00",
+            "operatorMainUnit":"",
+            "operatorSubUnit":"",
+            "processingMainUnit":"",
+            "processingSubUnit":"",
+            "authorizationDetl":{
+               "authorizerId":"02",
+               "authorizedDateTime":"2017-05-02T18:14:11.302+08:00",
+               "authorizerMainUnit":"12",
+               "authorizerSubUnit":"123"
+            }
+         }
+      },
+      "transactionDate":"2027-05-02+08:00",
+      "maturityDate":"2027-09-01+08:00",
+      "principalAmount":{
+         "amount":"5000",
+         "currency":"SGD"
+      },
+      "placementPeriod":{
+         "period":{
+            "periodCount":"3",
+            "periodType":"MONTH"
+         }
+      },
+      "settlementInstructionDetl":{
+         "settlementAccount":{
+            "accountNumber":"00219429310001",
+            "productType":"CA",
+            "baseCurrency":"SGD"
+         }
+      },
+      "maturityInstructionDetl":{
+         "maturityInstruction":"WDR"
+      }
+   }
+}

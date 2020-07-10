@@ -1,0 +1,2528 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Deposits API</title>
+<style type="text/css">
+                    body {
+                        font-family: sans-serif;
+                        font-size: 0.85em;
+                        margin: 2em 8em;
+                    }
+
+                    .methods {
+                        background-color: #ffffff;
+                        padding: 1em;
+                    }
+
+                    pre {
+                        border: dashed 1px;
+                        border-color: #999999;
+                        margin-left: 7px;
+                        padding: 0.5em;
+                        line-height: 150%;
+                        font-family: monospace;
+                        font-size: 12px;
+                        color: #000;
+                    }
+
+                    a:link {
+                        color: #333333;
+                        font-family: Verdana, Arial, Helvetica, sans-serif;
+                        font-size: 12px;
+                    }
+
+                    a:visited {
+                        color: #333333;
+                        color: #333333;
+                        font-family: Verdana, Arial, Helvetica, sans-serif;
+                    }
+
+                    h1 {
+                        margin: 0px 5px 5px;
+                        font: verdana, arial, helvetica;
+                        color: #00cc33;
+                        font-weight: normal;
+                        font-size: 18.0pt;
+                        font-weight: bold;
+                    }
+
+                    h2 {
+                        margin: 0px 0px 5px;
+                        font: verdana, arial, helvetica;
+                        color: #00cc33;
+                        font-weight: normal;
+                        font-size: 14.0pt;
+                        font-weight: bold;
+                    }
+
+                    h3 {
+                        margin: 10px 0px 5px;
+                        font-weight: bold;
+                        font-family: Verdana, Arial, Helvetica, sans-serif;
+                        font-size: 14px;
+                        color: #00cc33;
+                    }
+
+                    h4 {
+                        margin: 0em;
+                        padding: 0em;
+                    }
+
+                    h6 {
+                        font-size: 1.1em;
+                        color: #99a;
+                        margin: 0.5em 0em 0.25em 0em;
+                    }
+
+                    dd {
+                        margin-left: 1em;
+                    }
+
+                    tt {
+                        font-size: 1.2em;
+                    }
+
+                    table {
+                        margin-bottom: 0.5em;
+                    }
+
+                    th {
+                        font-family: Arial, Helvetica, sans-serif;
+                        font-size: 12px;
+                        font-weight: bold;
+                        text-align: left;
+                        padding: 5px;
+                        background: #00cc33;
+                        -moz-border-radius:;
+                        width = 150px;
+                    }
+
+                    td {
+                        padding: 3px 6px;
+                        font-weight: normal;
+                        vertical-align: top;
+                        background: #eeeeee;
+                        font-family: Arial, Helvetica, sans-serif;
+                        font-size: 12px;
+                    }
+
+                    td p {
+                        margin: 0px;
+                        font-family: Arial, Helvetica, sans-serif;
+                        font-size: 12px;
+                    }
+
+                    ul {
+                        padding-left: 1.75em;
+                    }
+
+                    li {
+                        font-family: Arial, Helvetica, sans-serif;
+                        font-size: 12px;
+                    }
+
+                    p + ul, p + ol, p + dl {
+                        margin-top: 0em;
+                        font-family: Arial, Helvetica, sans-serif;
+                        font-size: 12px;
+                    }
+
+                    .optional {
+                        font-weight: normal;
+                        opacity: 0.75;
+                    }
+                </style>
+</head>
+<body>
+<h1>Deposits API</h1>
+<p># Overview
+The **Deposits API** allows you to perform account management operations such as account creation, account status updates and enquires on account information, account holders and transactions for various accounts held by the party. 
+
+The account types currently supported by the **Deposits API** are **Savings Account**, **Current Account**, **Fixed Deposits Account**, **Multi-Currency Account** and **Multiplier Account**. 
+
+The **Deposits API** also showcases all available HTTP request operations and their associated endpoints.
+
+# Version History
+Version | Release date | Change Log
+--------|--------------|----------------------
+1.0      | October, 2017   | Base version of API
+
+# Authentication
+&lt;!-- ReDoc-Inject: &lt;security-definitions&gt; --&gt;
+
+# Pagination
+Pagination is available on the Deposit summary API.
+
+# Frequently Asked Questions
+Q1: Can all the CASA accounts held by a party be viewed in one API call? 
+
+Ans: Yes, this information can be obtained using the Deposit summary API. 
+
+Q2: Can I get the account details of a Multi-Currency account? 
+
+Ans: Yes, the account details API provides information on the various currencies associated with MCA accounts.
+
+# Known Issues
+This API has no pending issues at the moment. Want to report a new issue? please help us [here](mailto:developers@dbs.com)
+
+# Throttling (Rate Limits)
+We throttle our APIs by default to ensure maximum performance for all developers.</p>
+<ul>
+<li>
+<a href="#resources">Resources</a>
+<ul>
+<li>
+<a href="#https://www.dbs.com/sandbox/api/sg/v1#/accounts/accountCreation">https://www.dbs.com/sandbox/api/sg/v1/accounts/accountCreation</a>
+</li>
+<li>
+<a href="#https://www.dbs.com/sandbox/api/sg/v1#/accounts/earmarkFunds">https://www.dbs.com/sandbox/api/sg/v1/accounts/earmarkFunds</a>
+</li>
+<li>
+<a href="#https://www.dbs.com/sandbox/api/sg/v1#/accounts/releaseEarmark">https://www.dbs.com/sandbox/api/sg/v1/accounts/releaseEarmark</a>
+</li>
+<li>
+<a href="#https://www.dbs.com/sandbox/api/sg/v1#/accounts/search">https://www.dbs.com/sandbox/api/sg/v1/accounts/search</a>
+</li>
+<li>
+<a href="#https://www.dbs.com/sandbox/api/sg/v1#/accounts/{accountId}">https://www.dbs.com/sandbox/api/sg/v1/accounts/{accountId}</a>
+</li>
+<li>
+<a href="#https://www.dbs.com/sandbox/api/sg/v1#/accounts/{accountId}/earmarks">https://www.dbs.com/sandbox/api/sg/v1/accounts/{accountId}/earmarks</a>
+</li>
+<li>
+<a href="#https://www.dbs.com/sandbox/api/sg/v1#/accounts/{accountId}/holders">https://www.dbs.com/sandbox/api/sg/v1/accounts/{accountId}/holders</a>
+</li>
+<li>
+<a href="#https://www.dbs.com/sandbox/api/sg/v1#/accounts/{accountId}/placements">https://www.dbs.com/sandbox/api/sg/v1/accounts/{accountId}/placements</a>
+</li>
+<li>
+<a href="#https://www.dbs.com/sandbox/api/sg/v1#/accounts/{accountId}/placements/placementCreation">https://www.dbs.com/sandbox/api/sg/v1/accounts/{accountId}/placements/placementCreation</a>
+</li>
+<li>
+<a href="#https://www.dbs.com/sandbox/api/sg/v1#/accounts/{accountId}/placements/{depositId}">https://www.dbs.com/sandbox/api/sg/v1/accounts/{accountId}/placements/{depositId}</a>
+</li>
+<li>
+<a href="#https://www.dbs.com/sandbox/api/sg/v1#/accounts/{accountId}/statusUpdate">https://www.dbs.com/sandbox/api/sg/v1/accounts/{accountId}/statusUpdate</a>
+</li>
+<li>
+<a href="#https://www.dbs.com/sandbox/api/sg/v1#/accounts/{accountId}/transactions">https://www.dbs.com/sandbox/api/sg/v1/accounts/{accountId}/transactions</a>
+</li>
+<li>
+<a href="#https://www.dbs.com/sandbox/api/sg/v1#/parties/{partyId}/deposits">https://www.dbs.com/sandbox/api/sg/v1/parties/{partyId}/deposits</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#representations">Representations</a>
+<ul>
+<li>
+<a href="#N20053">application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N2005A">Status Code200 201-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20061">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20068">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N2006F">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20076">Status Code-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N200C7">application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N200CE">Status Code200 201-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N200D5">Status Code400-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N200DC">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N200DF">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N200E6">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N200ED">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N200F4">Status Code-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20145">application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N2014C">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20153">Status Code400-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N2015A">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20161">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20168">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N2016F">Status Code-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N201C4">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N201CB">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N201D2">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N201D9">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N201E0">Status Code504-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20243">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N2024A">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20251">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20258">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N202BB">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N202C2">Status Code400-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N202C9">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N202D0">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N202D7">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N202DE">Status Code-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20341">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20348">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N2034B">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20352">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20359">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N203BC">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N203C3">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N203CA">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N203D1">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N203D8">Status Code504-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20431">application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20438">Status Code200 201-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N2043F">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20442">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20449">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20450">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20457">Status Code-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N2045E">Status Code200-text/html;charset=UTF-8<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N204CF">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N204D6">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N204D9">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N204E0">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N204E7">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N204EE">Status Code504-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N2054D">application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20554">Status Code200 201-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N2055B">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20562">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20569">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20570">Status Code-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20577">Status Code405-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N205DA">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N205E1">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N205E8">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N205EF">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N205F6">Status Code504-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20683">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N2068A">Status Code400-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20691">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20698">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N2069F">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="resources">Resources</h2>
+<div class="resource">
+<h3 id="https://www.dbs.com/sandbox/api/sg/v1#/accounts/accountCreation">/accounts/accountCreation</h3>
+<h6>Methods</h6>
+<div class="methods">
+<div class="method">
+<h4 id="https://www.dbs.com/sandbox/api/sg/v1#createAccountUsingPOST">POST</h4>
+<p>Creates an account. Current scope is for retail account only
+Create Account</p>
+<h6>request header parameters
+            </h6>
+<table>
+<tr>
+<th>parameter</th>
+<th>value</th>
+<th>description</th>
+</tr>
+<tr>
+<td>
+<p>
+<strong>clientId</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Client Identifier</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accessToken</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Access token</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accept-version</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>uuid</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Message UID</p>
+</td>
+</tr>
+</table>
+<p>
+<em>acceptable request representations:</em>
+</p>
+<ul>
+<li>
+<a href="#N20053">application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+</ul>
+<p>
+<em>available response representations:</em>
+</p>
+<ul>
+<li>
+<a href="#N2005A">Status Code200 201-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20061">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20068">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N2006F">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20076">Status Code-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="resource">
+<h3 id="https://www.dbs.com/sandbox/api/sg/v1#/accounts/earmarkFunds">/accounts/earmarkFunds</h3>
+<h6>Methods</h6>
+<div class="methods">
+<div class="method">
+<h4 id="https://www.dbs.com/sandbox/api/sg/v1#earmarkAccountUsingPOST">POST</h4>
+<p>Earmark an account on a specified amount of funds
+Earmark account on specific amount</p>
+<h6>request header parameters
+            </h6>
+<table>
+<tr>
+<th>parameter</th>
+<th>value</th>
+<th>description</th>
+</tr>
+<tr>
+<td>
+<p>
+<strong>clientId</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Client Identifier</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accessToken</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Access token generated through the Authorisation process</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accept-version</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>uuid</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Message UID</p>
+</td>
+</tr>
+</table>
+<p>
+<em>acceptable request representations:</em>
+</p>
+<ul>
+<li>
+<a href="#N200C7">application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+</ul>
+<p>
+<em>available response representations:</em>
+</p>
+<ul>
+<li>
+<a href="#N200CE">Status Code200 201-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N200D5">Status Code400-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N200DC">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N200DF">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N200E6">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N200ED">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N200F4">Status Code-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="resource">
+<h3 id="https://www.dbs.com/sandbox/api/sg/v1#/accounts/releaseEarmark">/accounts/releaseEarmark</h3>
+<h6>Methods</h6>
+<div class="methods">
+<div class="method">
+<h4 id="https://www.dbs.com/sandbox/api/sg/v1#releaseEarmarkUsingPOST">POST</h4>
+<p>Release earmark on an account
+Release earmark on an account</p>
+<h6>request header parameters
+            </h6>
+<table>
+<tr>
+<th>parameter</th>
+<th>value</th>
+<th>description</th>
+</tr>
+<tr>
+<td>
+<p>
+<strong>clientId</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Client Identifier</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accessToken</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Access token generated through the Authorisation process</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accept-version</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>uuid</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Message UID</p>
+</td>
+</tr>
+</table>
+<p>
+<em>acceptable request representations:</em>
+</p>
+<ul>
+<li>
+<a href="#N20145">application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+</ul>
+<p>
+<em>available response representations:</em>
+</p>
+<ul>
+<li>
+<a href="#N2014C">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20153">Status Code400-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N2015A">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20161">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20168">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N2016F">Status Code-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="resource">
+<h3 id="https://www.dbs.com/sandbox/api/sg/v1#/accounts/search">/accounts/search</h3>
+<h6>Methods</h6>
+<div class="methods">
+<div class="method">
+<h4 id="https://www.dbs.com/sandbox/api/sg/v1#GET">GET</h4>
+<p>Search a given account number and if it is valid, return a tokenized account identifier
+Search a given account number</p>
+<h6>request query parameters
+            </h6>
+<table>
+<tr>
+<th>parameter</th>
+<th>value</th>
+<th>description</th>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accountNumber</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Account Number to be searched</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>productType</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Product Type of the Account</p>
+</td>
+</tr>
+</table>
+<h6>request header parameters
+            </h6>
+<table>
+<tr>
+<th>parameter</th>
+<th>value</th>
+<th>description</th>
+</tr>
+<tr>
+<td>
+<p>
+<strong>clientId</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Client Identifier</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accessToken</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Access token</p>
+</td>
+</tr>
+</table>
+<p>
+<em>available response representations:</em>
+</p>
+<ul>
+<li>
+<a href="#N201C4">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N201CB">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N201D2">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N201D9">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N201E0">Status Code504-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="resource">
+<h3 id="https://www.dbs.com/sandbox/api/sg/v1#/accounts/{accountId}">/accounts/{accountId}</h3>
+<h6>Methods</h6>
+<div class="methods">
+<div class="method">
+<h4 id="https://www.dbs.com/sandbox/api/sg/v1#GET">GET</h4>
+<p>Return account details for a given account
+Retrieve Account Details</p>
+<h6>request header parameters
+            </h6>
+<table>
+<tr>
+<th>parameter</th>
+<th>value</th>
+<th>description</th>
+</tr>
+<tr>
+<td>
+<p>
+<strong>clientId</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Client Identifier</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accessToken</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Access token</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accept-version</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>uuid</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Message UID</p>
+</td>
+</tr>
+</table>
+<p>
+<em>available response representations:</em>
+</p>
+<ul>
+<li>
+<a href="#N20243">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N2024A">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20251">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20258">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="resource">
+<h3 id="https://www.dbs.com/sandbox/api/sg/v1#/accounts/{accountId}/earmarks">/accounts/{accountId}/earmarks</h3>
+<h6>Methods</h6>
+<div class="methods">
+<div class="method">
+<h4 id="https://www.dbs.com/sandbox/api/sg/v1#earmarkDetailsUsingGET">GET</h4>
+<p>Return earmark details for a given account
+Retrieve Earmark Details</p>
+<h6>request header parameters
+            </h6>
+<table>
+<tr>
+<th>parameter</th>
+<th>value</th>
+<th>description</th>
+</tr>
+<tr>
+<td>
+<p>
+<strong>clientId</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Client Identifier</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accessToken</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Access token generated through the Authorisation process</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accept-version</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>uuid</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Message UID</p>
+</td>
+</tr>
+</table>
+<p>
+<em>available response representations:</em>
+</p>
+<ul>
+<li>
+<a href="#N202BB">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N202C2">Status Code400-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N202C9">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N202D0">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N202D7">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N202DE">Status Code-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="resource">
+<h3 id="https://www.dbs.com/sandbox/api/sg/v1#/accounts/{accountId}/holders">/accounts/{accountId}/holders</h3>
+<h6>Methods</h6>
+<div class="methods">
+<div class="method">
+<h4 id="https://www.dbs.com/sandbox/api/sg/v1#GET">GET</h4>
+<p>Return list of holders for a given account
+Retrieve Account Holders</p>
+<h6>request header parameters
+            </h6>
+<table>
+<tr>
+<th>parameter</th>
+<th>value</th>
+<th>description</th>
+</tr>
+<tr>
+<td>
+<p>
+<strong>clientId</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Client Identifier</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accessToken</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Access token</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accept-version</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>uuid</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Message UID</p>
+</td>
+</tr>
+</table>
+<p>
+<em>available response representations:</em>
+</p>
+<ul>
+<li>
+<a href="#N20341">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20348">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N2034B">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20352">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20359">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="resource">
+<h3 id="https://www.dbs.com/sandbox/api/sg/v1#/accounts/{accountId}/placements">/accounts/{accountId}/placements</h3>
+<h6>Methods</h6>
+<div class="methods">
+<div class="method">
+<h4 id="https://www.dbs.com/sandbox/api/sg/v1#GET">GET</h4>
+<p>Return list of placements for a given account.  It includes both outstanding and matured placements.
+Retrieve List of Fixed Deposit placements</p>
+<h6>request header parameters
+            </h6>
+<table>
+<tr>
+<th>parameter</th>
+<th>value</th>
+<th>description</th>
+</tr>
+<tr>
+<td>
+<p>
+<strong>clientId</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Client Identifier</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accessToken</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Access Token</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accept-version</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>uuid</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Message UID</p>
+</td>
+</tr>
+</table>
+<p>
+<em>available response representations:</em>
+</p>
+<ul>
+<li>
+<a href="#N203BC">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N203C3">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N203CA">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N203D1">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N203D8">Status Code504-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="resource">
+<h3 id="https://www.dbs.com/sandbox/api/sg/v1#/accounts/{accountId}/placements/placementCreation">/accounts/{accountId}/placements/placementCreation</h3>
+<h6>resource-wide template parameters
+            </h6>
+<table>
+<tr>
+<th>parameter</th>
+<th>value</th>
+<th>description</th>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accountId</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td />
+</tr>
+</table>
+<h6>Methods</h6>
+<div class="methods">
+<div class="method">
+<h4 id="https://www.dbs.com/sandbox/api/sg/v1#createFDPlacementUsingPOST">POST</h4>
+<p>Create Fixed Deposit (FD) placement. Current scope is for retail customers and S$FD placement only.  Placement, Settlement and Withdrawal are in SGD only. 
+Create Fixed Deposit Placement</p>
+<h6>request header parameters
+            </h6>
+<table>
+<tr>
+<th>parameter</th>
+<th>value</th>
+<th>description</th>
+</tr>
+<tr>
+<td>
+<p>
+<strong>clientId</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Client Identifier</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accessToken</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Access Token</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accept-version</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>uuid</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Message UID</p>
+</td>
+</tr>
+</table>
+<p>
+<em>acceptable request representations:</em>
+</p>
+<ul>
+<li>
+<a href="#N20431">application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+</ul>
+<p>
+<em>available response representations:</em>
+</p>
+<ul>
+<li>
+<a href="#N20438">Status Code200 201-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N2043F">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20442">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20449">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20450">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20457">Status Code-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N2045E">Status Code200-text/html;charset=UTF-8<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="resource">
+<h3 id="https://www.dbs.com/sandbox/api/sg/v1#/accounts/{accountId}/placements/{depositId}">/accounts/{accountId}/placements/{depositId}</h3>
+<h6>Methods</h6>
+<div class="methods">
+<div class="method">
+<h4 id="https://www.dbs.com/sandbox/api/sg/v1#GET">GET</h4>
+<p>Return Fixed Deposit placement details for a given account and deposit number
+Retrieve Fixed Deposit placement details</p>
+<h6>request header parameters
+            </h6>
+<table>
+<tr>
+<th>parameter</th>
+<th>value</th>
+<th>description</th>
+</tr>
+<tr>
+<td>
+<p>
+<strong>clientId</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Client Identifier</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accessToken</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Access Token</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accept-version</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>uuid</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Message UID</p>
+</td>
+</tr>
+</table>
+<p>
+<em>available response representations:</em>
+</p>
+<ul>
+<li>
+<a href="#N204CF">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N204D6">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N204D9">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N204E0">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N204E7">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N204EE">Status Code504-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="resource">
+<h3 id="https://www.dbs.com/sandbox/api/sg/v1#/accounts/{accountId}/statusUpdate">/accounts/{accountId}/statusUpdate</h3>
+<h6>Methods</h6>
+<div class="methods">
+<div class="method">
+<h4 id="https://www.dbs.com/sandbox/api/sg/v1#tagAccountStatus">POST</h4>
+<p>Current scope supports tagging account as frozen only
+Update status of an account</p>
+<h6>request header parameters
+            </h6>
+<table>
+<tr>
+<th>parameter</th>
+<th>value</th>
+<th>description</th>
+</tr>
+<tr>
+<td>
+<p>
+<strong>clientId</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Client Identifier</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accessToken</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Access token</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accept-version</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>uuid</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Message UID</p>
+</td>
+</tr>
+</table>
+<p>
+<em>acceptable request representations:</em>
+</p>
+<ul>
+<li>
+<a href="#N2054D">application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+</ul>
+<p>
+<em>available response representations:</em>
+</p>
+<ul>
+<li>
+<a href="#N20554">Status Code200 201-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N2055B">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20562">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20569">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20570">Status Code-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20577">Status Code405-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="resource">
+<h3 id="https://www.dbs.com/sandbox/api/sg/v1#/accounts/{accountId}/transactions">/accounts/{accountId}/transactions</h3>
+<h6>Methods</h6>
+<div class="methods">
+<div class="method">
+<h4 id="https://www.dbs.com/sandbox/api/sg/v1#GET">GET</h4>
+<p>Return transaction history for a given account and date range
+Retrieve Transaction History</p>
+<h6>request header parameters
+            </h6>
+<table>
+<tr>
+<th>parameter</th>
+<th>value</th>
+<th>description</th>
+</tr>
+<tr>
+<td>
+<p>
+<strong>clientId</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Client Identifier</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accessToken</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Access token</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accept-version</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>uuid</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Message UID</p>
+</td>
+</tr>
+</table>
+<p>
+<em>available response representations:</em>
+</p>
+<ul>
+<li>
+<a href="#N205DA">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N205E1">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N205E8">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N205EF">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N205F6">Status Code504-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="resource">
+<h3 id="https://www.dbs.com/sandbox/api/sg/v1#/parties/{partyId}/deposits">/parties/{partyId}/deposits</h3>
+<h6>Methods</h6>
+<div class="methods">
+<div class="method">
+<h4 id="https://www.dbs.com/sandbox/api/sg/v1#GET">GET</h4>
+<p>Returns a summary of all the deposit products such as Savings, Current and MCA accounts for a given Party identifier. This does not include the Fixed deposit products.
+retrieve summary of Deposit Accounts</p>
+<h6>request query parameters
+            </h6>
+<table>
+<tr>
+<th>parameter</th>
+<th>value</th>
+<th>description</th>
+</tr>
+<tr>
+<td>
+<p>
+<strong>cursor</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Cursor for pagination. Example: 1</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>amount</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Denotes the minimum balance amount required to filter the accounts in response</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>currency</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Denotes the currency of accounts to be filtered in response. ISO 4217 3-character currency code</p>
+</td>
+</tr>
+</table>
+<h6>request header parameters
+            </h6>
+<table>
+<tr>
+<th>parameter</th>
+<th>value</th>
+<th>description</th>
+</tr>
+<tr>
+<td>
+<p>
+<strong>clientId</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Client Identifier</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accessToken</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+<small>(required)</small>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Access token</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>accept-version</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Specifies the acceptable version of the message set. If not specified, the latest version of the API will be considered. Example: 1.2</p>
+</td>
+</tr>
+<tr>
+<td>
+<p>
+<strong>uuid</strong>
+</p>
+</td>
+<td>
+<p>
+<em>
+<a href="http://www.w3.org/TR/xmlschema-2/#string">string</a>
+</em>
+</p>
+<p>Default:
+                                <tt />
+</p>
+</td>
+<td>
+<p>Message UID</p>
+</td>
+</tr>
+</table>
+<p>
+<em>available response representations:</em>
+</p>
+<ul>
+<li>
+<a href="#N20683">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N2068A">Status Code400-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20691">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N20698">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+<li>
+<a href="#N2069F">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<h2 id="representations">Representations</h2>
+<h3 id="N20053">application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N2005A">Status Code200 201-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20061">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20068">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N2006F">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20076">Status Code-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N200C7">application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N200CE">Status Code200 201-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N200D5">Status Code400-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N200DC">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N200DF">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N200E6">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N200ED">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N200F4">Status Code-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20145">application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N2014C">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20153">Status Code400-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N2015A">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20161">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20168">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N2016F">Status Code-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N201C4">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N201CB">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N201D2">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N201D9">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N201E0">Status Code504-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20243">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N2024A">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20251">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20258">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N202BB">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N202C2">Status Code400-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N202C9">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N202D0">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N202D7">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N202DE">Status Code-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20341">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20348">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N2034B">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20352">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20359">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N203BC">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N203C3">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N203CA">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N203D1">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N203D8">Status Code504-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20431">application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20438">Status Code200 201-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N2043F">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20442">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20449">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20450">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20457">Status Code-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N2045E">Status Code200-text/html;charset=UTF-8<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N204CF">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N204D6">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N204D9">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N204E0">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N204E7">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N204EE">Status Code504-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N2054D">application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20554">Status Code200 201-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N2055B">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20562">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20569">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20570">Status Code-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20577">Status Code405-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N205DA">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N205E1">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N205E8">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N205EF">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N205F6">Status Code504-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20683">Status Code200-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N2068A">Status Code400-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20691">Status Code403-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N20698">Status Code404-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+<h3 id="N2069F">Status Code500-application/json<abbr title="{http://wadl.dev.java.net/2009/02} " />
+</h3>
+</body>
+</html>
