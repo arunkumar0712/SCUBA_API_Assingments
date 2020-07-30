@@ -1,0 +1,32 @@
+**************Step Start ************************** Request ************POST https://sandbox.apihub.citi.com/gcb/api/password/oauth2/token/bh/gcb HTTP/1.1
+Accept-Encoding: gzip,deflate
+Authorization: Basic NTdjYzAzZGMtNmQzNi00MWM0LTlmMGEtYWFiZmM3MTY1NzVjOm9WMnNUMHZBOHVYMGlLNmtGMGNVNXBENWRHOHVDNGZTNGRVNXZDMGFCNGtBMmRTNnJQ
+Accept: application/json
+uuid: 3eac0c41-b7ac-40f1-a503-9caaf5528bcf
+BizToken: ngJNnov8FfO+bD3TODe/4iNikcW3/uT7peurzHDWsWoSiG6J1pkR5GMXHJcFtL0iLS5x1JlhrPrZ8bh6+1SgPA==
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 574
+Host: sandbox.apihub.citi.com
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.5 (Java/12.0.1)
+
+grant_type=password&scope=/api&username=SandboxUser1&password=967c2812d7c437b1b8f5dcc887ab64eb24637c9855cc5adeae232c5ae68232802579af2dad68e94c09d3cd6ec3f974e060468150c5ad8c01f39830a723229e8507e9a23433ff273cb6084cf12e838e76e30b2cba1e23ff7be9567726e584f5f442865553df94ddda1ea035e17e3109fcfd9ea3a1d5499a184ca7b79964ca5adfeac59b566f52fb4aa0e7b35983c71b838d16d3dff61715bafde60328e9c5c7fe5ae0e5edc8187d0167206b59df38e718deef822a0499d128d1d6a8464d0871bcdc273658d3c73ebda9c3e348b6e16838942d4630d555ff3ca6569d409b674c37e6b2412e086b644844662dd36fa79acb467207855a39e203552b9f1d2b0e1600
+************** Response ************HTTP/1.1 200 OK
+X-Backside-Transport: OK OK,OK OK,OK OK
+Server: Apache-Coyote/1.1
+sid: 47021b21-5b74-4f59-a0f4-d8899408f4b1
+citiuuid: 854dc895-9733-4931-8a5e-0fe2bffb7975
+Content-Type: application/json
+X-Global-Transaction-ID: ddade3ba5f2269d6f76ccdfd
+Access-Control-Expose-Headers: APIm-Debug-Trans-Id, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-Global-Transaction-ID
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: POST
+X-RateLimit-Limit: name=rate-limit-1,60;
+X-RateLimit-Remaining: name=rate-limit-1,58;
+X-Akamai-CITISITE: GTDC
+Content-Length: 666
+Date: Thu, 30 Jul 2020 06:33:59 GMT
+Connection: keep-alive
+Set-Cookie: CITI_SITE=gtdc; expires=Thu, 30-Jul-2020 06:53:59 GMT; path=/; domain=sandbox.apihub.citi.com; secure; HttpOnly
+
+{ "token_type":"Bearer", "access_token":"AAIkNTdjYzAzZGMtNmQzNi00MWM0LTlmMGEtYWFiZmM3MTY1NzVj6j11wUjTgGud2rLCPz6Ve4cilmw7o4fC4bjvgk3C5QESGTIV9Qr3sOwuFlZ2wCNxEvpJZf4-GuRLlwX5t9hd3bYagmxbv0Aj8VtIrBlZMdgtlK0dt9wBLMR2gFqLcbrnvPZgvif6U_EvjRJZdzBX63zALxRf5otPz9IyVKQ-hgxGLpuH62CJkd8B-HBAwxtqXOor3B29f08vMWh17USA0g", "expires_in":1800, "consented_on":1596090839, "scope":"/api", "refresh_token":"AAITiJlGqAaRvh-84P9fXXg1tzqHOiccBNqijObTdmes6Uy07ID8Y8HirS0pVF-0AwvYeX9FLlJ4dAqTbg7gaA6oQ33g9vqg69MwtWoj52Bj6rUF0D8iLSflhdyzWMj_QK7qcfQQb5Bu0gK_i8qwAu2G2W0PyqKgPlcNB2UgvwXXE8gGpBVmpqhbgWGVKKzhfrh-Ydm-axTOHaHKuulcdN3Rdxgm_h1SVCaeUHwOchK7zw", "refresh_token_expires_in":2592000 }

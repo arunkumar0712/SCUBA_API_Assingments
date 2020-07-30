@@ -1,0 +1,24 @@
+
+200 OK Success Response	
+
+{
+  "creditCardAccount": {
+    "productName": "CITI PRESTIGE CARD",
+    "productCode": "0075_MC440",
+    "displayAccountNumber": "XXXXXXXXXXXX1219",
+    "currencyCode": "SGD",
+    "outstandingBalance": 1380.87,
+    "lastStatementBalance": 15000.25,
+    "lastStatementDate": "2015-06-25",
+    "creditUsed": 3750.25,
+    "creditLimit": 10300,
+    "availableCredit": 5876.87,
+    "cashAdvanceLimit": 15000.25,
+    "cashAdvanceAvailableAmount": 15000.25,
+    "lastPaymentAmount": 1500.25,
+    "lastPaymentDate": "2015-06-12",
+    "minimumDueAmount": 1500.25,
+    "paymentDueDate": "2016-09-05",
+    "availablePointBalance": 1500.25
+  }
+}

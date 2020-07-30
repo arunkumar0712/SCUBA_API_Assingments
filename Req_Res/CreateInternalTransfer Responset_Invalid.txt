@@ -1,0 +1,153 @@
+Invalid source account
+400 Bad Request
+{
+  "type": "error",
+  "code": "invalidSourceAccount",
+  "details": "Source account is invalid"
+}
+
+invalidPayee
+400 Bad Request
+{
+  "type": "error",
+  "code": "invalidPayee",
+  "details": "Payee is invalid"
+}
+
+
+Invalid amount
+400 Bad Request
+{
+  "httpCode": "400",
+  "httpMessage": "Bad Request",
+  "moreInformation": "The body of the request, which was expected to be JSON, was invalid, and could not be decoded. A valid property value was not found."
+}
+
+Invalid tnx ccy indicator
+400 Bad Request
+{
+  "type": "invalid",
+  "code": "invalidRequest",
+  "details": "Missing or invalid Parameters",
+  "moreInfo": {
+    "fieldLevelErrors": [
+      {
+        "fieldName": "/JSON/transferCurrencyIndicator",
+        "reasonCode": "invalidPattern",
+        "errorMessage": "Enter Valid Data"
+      }
+    ]
+  }
+}
+
+
+Invalid transferPurpose
+400 Bad Request
+{
+  "type": "invalid",
+  "code": "invalidRequest",
+  "details": "Missing or invalid Parameters",
+  "moreInfo": {
+    "fieldLevelErrors": [
+      {
+        "fieldName": "/JSON/transferPurpose",
+        "reasonCode": "invalidPattern",
+        "errorMessage": "Enter Valid Data"
+      }
+    ]
+  }
+}
+
+Invalid chargeBearer",
+
+400 Bad Request
+{
+  "type": "invalid",
+  "code": "invalidRequest",
+  "details": "Missing or invalid Parameters",
+  "moreInfo": {
+    "fieldLevelErrors": [
+      {
+        "fieldName": "/JSON/chargeBearer",
+        "reasonCode": "invalidPattern",
+        "errorMessage": "Enter Valid Data"
+      }
+    ]
+  }
+}
+
+
+Invalid source ccy:
+400 Bad Request
+{
+  "type": "invalid",
+  "code": "invalidRequest",
+  "details": "Missing or invalid Parameters",
+  "moreInfo": {
+    "fieldLevelErrors": [
+      {
+        "fieldName": "/JSON/transferCurrencyIndicator",
+        "reasonCode": "invalidPattern",
+        "errorMessage": "Enter Valid Data"
+      }
+    ]
+  }
+}
+
+
+
+Null chargebearer
+
+400 Bad Request
+{
+  "type": "invalid",
+  "code": "invalidRequest",
+  "details": "Missing or invalid Parameters",
+  "moreInfo": {
+    "fieldLevelErrors": [
+      {
+        "fieldName": "/JSON/chargeBearer",
+        "reasonCode": "Required/Invalid Format",
+        "errorMessage": "Required Field is not coming/Invalid Field  format is coming"
+      }
+    ]
+  }
+}
+
+
+Null source acc
+
+400 Bad Request
+{
+  "type": "invalid",
+  "code": "invalidRequest",
+  "details": "Missing or invalid Parameters",
+  "moreInfo": {
+    "fieldLevelErrors": [
+      {
+        "fieldName": "/JSON/sourceAccountId",
+        "reasonCode": "Required/Invalid Format",
+        "errorMessage": "Required Field is not coming/Invalid Field  format is coming"
+      }
+    ]
+  }
+}
+
+
+Null payee
+
+400 Bad Request
+{
+  "type": "invalid",
+  "code": "invalidRequest",
+  "details": "Missing or invalid Parameters",
+  "moreInfo": {
+    "fieldLevelErrors": [
+      {
+        "fieldName": "/JSON/payeeId",
+        "reasonCode": "Required/Invalid Format",
+        "errorMessage": "Required Field is not coming/Invalid Field  format is coming"
+      }
+    ]
+  }
+}

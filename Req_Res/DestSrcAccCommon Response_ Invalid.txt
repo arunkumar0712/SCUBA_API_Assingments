@@ -1,0 +1,20 @@
+
+/v1/moneyMovement/payees/sourceAccounts
+
+Invalid Payment type
+
+400 Bad Request
+{
+  "type": "invalid",
+  "code": "invalidRequest",
+  "details": "Missing or invalid Parameters",
+  "moreInfo": {
+    "fieldLevelErrors": [
+      {
+        "fieldName": "/APIProcessInput/QueryParams/Param[Name='paymentType']/Value",
+        "reasonCode": "invalidReference",
+        "errorMessage": "Required Valid Reference Data"
+      }
+    ]
+  }
+}

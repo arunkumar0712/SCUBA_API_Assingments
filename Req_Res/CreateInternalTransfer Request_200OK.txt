@@ -1,0 +1,13 @@
+Create internal Transfer:
+Request Body: Valid
+
+{
+  "sourceAccountId": "3739334c4d3463614356474f6d7650667a737656664652677747796855646c5552745a43346d37423653553d",
+  "transactionAmount": 50,
+  "transferCurrencyIndicator": "SOURCE_ACCOUNT_CURRENCY",
+  "payeeId": "6a563747494e793478424a5a6e575a524e3831435977386d4767345a363837324b5a4a56514f54714f32413d",
+  "chargeBearer": "BENEFICIARY",
+  "fxDealReferenceNumber": "12345",
+  "remarks": "Fund Transfer",
+  "transferPurpose": "MEDICAL_SERVICES"
+}

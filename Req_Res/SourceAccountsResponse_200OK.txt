@@ -1,0 +1,40 @@
+Retrieve dest src acct internal
+200 OK
+{
+  "sourceAccounts": [
+    {
+      "sourceAccountId": "355a515030616a53576b6a65797359506a634175764a734a3238314e4668627349486a676f7449463949453d",
+      "displaySourceAccountNumber": "1847",
+      "sourceAccountCurrencyCode": "GBP",
+      "accountGroup": "SAVINGS_AND_INVESTMENTS",
+      "availableBalance": 13642.83,
+      "nextPaymentAmount": 0,
+      "productName": "GBP SAVINGS A/C",
+      "accountNickName": "GBPSAVINGS"
+    }
+  ],
+  "payeeSourceAccountCombinations": [
+    {
+      "payeeId": "626d6e624b584b4d2f43785a4a42566866594838715a674c322f6b4d44476f7a5247694b7a6865332b6b773d",
+      "displayPayeeAccountNumber": "5007",
+      "payeeAccountCurrencyCode": "SGD",
+      "payeeNickName": "SAVINGS",
+      "sourceAccountIds": [
+        {
+          "sourceAccountId": "355a515030616a53576b6a65797359506a634175764a734a3238314e4668627349486a676f7449463949453d"
+        }
+      ]
+    },
+    {
+      "payeeId": "37457856672b44454d336f4e7a3465595233774d4865705a5168454d44447936425a7631416e712b744e773d",
+      "displayPayeeAccountNumber": "7403",
+      "payeeAccountCurrencyCode": "SGD",
+      "payeeNickName": "GOLD",
+      "sourceAccountIds": [
+        {
+          "sourceAccountId": "355a515030616a53576b6a65797359506a634175764a734a3238314e4668627349486a676f7449463949453d"
+        }
+      ]
+    }
+  ]
+}

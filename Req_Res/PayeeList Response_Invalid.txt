@@ -1,0 +1,37 @@
+Payee List
+
+Invalid Payment Type
+
+400 Bad Request
+
+{
+  "type": "invalid",
+  "code": "invalidRequest",
+  "details": "Missing or invalid Parameters",
+  "moreInfo": {
+    "fieldLevelErrors": [
+      {
+        "fieldName": "/APIProcessInput/QueryParams/Param[Name='paymentType']/Value",
+        "reasonCode": "invalidReference",
+        "errorMessage": "Required Valid Reference Data"
+      }
+    ]
+  }
+}
+
+invalid index:
+400 Bad Request
+{
+  "type": "invalid",
+  "code": "invalidRequest",
+  "details": "Missing or invalid Parameters",
+  "moreInfo": {
+    "fieldLevelErrors": [
+      {
+        "fieldName": "/APIProcessInput/QueryParams/Param[Name='nextStartIndex']/Value",
+        "reasonCode": "invalidPattern",
+        "errorMessage": "Enter Valid Data"
+      }
+    ]
+  }
+}

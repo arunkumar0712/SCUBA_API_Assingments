@@ -1,0 +1,22 @@
+import java.io.*;
+import com.eviware.soapui.impl.wsdl.teststeps.WsdlGroovyScriptTestStep;
+File Log_Path= new File("D:\\00_SCUBA\\Citi Sandbox API\\Reports")
+def  count =testRunner.testCase.getTestStepCount();
+log.info(count)
+
+for (int i=0;i<count;i++)
+{
+	String StepName= new String(testRunner.testCase.getTestStepAt(i).name)
+	String Log_File = Log_Path.getPath()+"\\"+StepName+".txt"
+	def filename= new File(Log_File)
+	log.info filename
+	filename.append("**************Step Start ************")
+	filename.append("************** Request ************")
+	String request = new String(testRunner.testCase.getTestStepAt(i).testRequest.response.rawRequestData)
+	filename.append(request+"\r\n")
+	log.info("Getting Response")
+	filename.append("************** Response ************")
+	String response = new String(testRunner.testCase.getTestStepAt(i).testRequest.response.rawResponseData)
+	filename.append(response+"\r\n")
+	log.info("Logging completed")	
+}

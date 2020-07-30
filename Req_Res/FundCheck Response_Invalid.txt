@@ -1,0 +1,30 @@
+200 OK
+{
+  "sufficientFundsIndicator": true
+}
+
+
+negative amount
+422 Unprocessable Entity
+{
+  "type": "error",
+  "code": "invalidAmount",
+  "details": "Amount is invalid"
+}
+
+
+Amount with comma Stringss etc
+{
+  "type": "invalid",
+  "code": "invalidRequest",
+  "details": "Missing or invalid Parameters",
+  "moreInfo": {
+    "fieldLevelErrors": [
+      {
+        "fieldName": "/APIProcessInput/QueryParams/Param[Name='sufficiencyCheckAmount']/Value",
+        "reasonCode": "invalidPattern",
+        "errorMessage": "Enter Valid Data"
+      }
+    ]
+  }
+}

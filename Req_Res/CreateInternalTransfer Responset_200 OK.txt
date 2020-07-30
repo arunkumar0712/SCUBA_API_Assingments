@@ -1,0 +1,14 @@
+200 OK
+{
+  "controlFlowId": "4155666c543878674c3546427075516d425449787a51746630717479482f565171612b434e52423947366f3d",
+  "debitDetails": {
+    "transactionDebitAmount": 100,
+    "currencyCode": "USD"
+  },
+  "creditDetails": {
+    "transactionCreditAmount": 125,
+    "currencyCode": "SGD"
+  },
+  "foreignExchangeRate": 1.25,
+  "transactionFee": 10
+}

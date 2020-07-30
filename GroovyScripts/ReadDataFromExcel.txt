@@ -1,0 +1,33 @@
+import jxl.*;
+import java.io.*;
+def testDataFile="C:\\Users\\ITSupport\\Desktop\\Book1.xls";
+//def testDataFile="C:\\Users\\ITSupport\\Desktop\\Citi_Sandbox_TestDesign_V2.0_testData.xls";
+FileInputStream dataFile= new FileInputStream(testDataFile)
+Workbook wbFile = Workbook.getWorkbook(dataFile)
+Sheet SheetFile = wbFile.getSheet(0);
+int RowCount=SheetFile.getRows()
+int ColumnCount=SheetFile.getColumns()
+def currentRow= testRunner.testCase.testSuite.project.getPropertyValue("CurrentRowTDD")
+log.info(currentRow)
+if(Integer.parseInt(currentRow)<RowCount)
+	{
+		for (int i =Integer.parseInt(currentRow);i<RowCount;i++)
+		{
+		  if(SheetFile.getCell(1,Integer.parseInt(currentRow)).getContents()=="1")
+		  {
+		  	for (int j=2;j<ColumnCount;j++)
+		  	{
+		      String dataHeader=SheetFile.getCell(j,0).getContents()
+		      String dataValues=SheetFile.getCell(j,Integer.parseInt(currentRow)).getContents()
+		      log.info(dataHeader+" "+dataValues+" "+j+" "+ColumnCount)
+		      testRunner.testCase.testSuite.project.setPropertyValue(dataHeader,dataValues)
+		  	}
+
+		  	int count = Integer.parseInt(currentRow)+1
+		  	testRunner.testCase.testSuite.project.setPropertyValue("TestDataRow", count.toString())
+		  	testRunner.testCase.testSuite.project.setPropertyValue("currentRow", count.toString())
+		  	break;
+		  }
+		  currentRow= String.valueOf(Integer.parseInt(currentRow)+1)
+		}
+	}

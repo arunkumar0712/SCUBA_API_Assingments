@@ -1,0 +1,24 @@
+Invalid control flow ID
+400 Bad Request
+{
+  "type": "error",
+  "code": "invalidControlFlowId",
+  "details": "Control flow Id is invalid"
+}
+
+Null value for cpntrol flow
+400 Bad Request
+{
+  "type": "invalid",
+  "code": "invalidRequest",
+  "details": "Missing or invalid Parameters",
+  "moreInfo": {
+    "fieldLevelErrors": [
+      {
+        "fieldName": "/JSON/controlFlowId",
+        "reasonCode": "fieldRequired",
+        "errorMessage": "Field Required"
+      }
+    ]
+  }
+}

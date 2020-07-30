@@ -1,0 +1,71 @@
+Payee List
+
+200 OK
+{
+  "payeeList": [
+    {
+      "payeeId": "626d6e624b584b4d2f43785a4a42566866594838715a674c322f6b4d44476f7a5247694b7a6865332b6b773d",
+      "payeeName": "MY CITI SAVING",
+      "payeeNickname": "SAVINGS",
+      "paymentType": "INTERNAL_DOMESTIC",
+      "displayAccountNumber": "5007",
+      "accountId": "355a515030616a53576b6a65797359506a634175764a734a3238314e4668627349486a676f7449463949453d",
+      "currencyCode": "SGD",
+      "paymentMethods": [
+        {
+          "paymentMethod": "FAST_PAYMENT"
+        }
+      ],
+      "payeeStatus": "ACTIVE",
+      "merchantNumber": "MYACCOUNT"
+    },
+    {
+      "payeeId": "37457856672b44454d336f4e7a3465595233774d4865705a5168454d44447936425a7631416e712b744e773d",
+      "payeeName": "GOLD ACCOUNT",
+      "payeeNickname": "GOLD",
+      "paymentType": "INTERNAL_DOMESTIC",
+      "displayAccountNumber": "7403",
+      "accountId": "355a515030616a53576b6a65797359506a634175764a734a3238314e4668627349486a676f7449463949453d",
+      "currencyCode": "AUD",
+      "paymentMethods": [
+        {
+          "paymentMethod": "FAST_PAYMENT"
+        }
+      ],
+      "payeeStatus": "ACTIVE",
+      "merchantNumber": "MYACCOUNT"
+    },
+    {
+      "payeeId": "3970304a4d2b432f453739362b46716630304b756256464869626b4c615565493243442f6f734438534f673d",
+      "payeeName": "RAVI KIRAN",
+      "payeeNickname": "RAVI",
+      "paymentType": "EXTERNAL_DOMESTIC",
+      "displayAccountNumber": "5643",
+      "accountId": "41375159436b366b32335a6b566d53315753684d2b69464f43427347654b496e2f6a4f6d4971546e622f773d",
+      "currencyCode": "SGD",
+      "paymentMethods": [
+        {
+          "paymentMethod": "GIRO"
+        }
+      ],
+      "payeeStatus": "ACTIVE",
+      "merchantNumber": "RAVI"
+    },
+    {
+      "payeeId": "6c4c786d596b366b56706944727144736c37725372774635555744355039756652467170524563656a51493d",
+      "payeeName": "YXWXLXE AXNXT",
+      "payeeNickname": "AXNXT",
+      "paymentType": "EXTERNAL_DOMESTIC",
+      "displayAccountNumber": "7645",
+      "accountId": "6d7a6272592b334b736b46417365786d31543653454a3044496a3447584941333679792b4f3436325546513d",
+      "currencyCode": "SGD",
+      "paymentMethods": [
+        {
+          "paymentMethod": "MEPS"
+        }
+      ],
+      "payeeStatus": "ACTIVE",
+      "merchantNumber": "AXNXT"
+    }
+  ]
+}
